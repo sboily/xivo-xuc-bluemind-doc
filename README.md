@@ -94,3 +94,8 @@ Launch container.
 To check the log.
 
     docker logs xuc
+
+Configuration
+-------------
+
+You can find a sample of the configuration here : https://github.com/sboily/docker-xuc/blob/master/config/xuc.conf
