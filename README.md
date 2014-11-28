@@ -23,7 +23,7 @@ After you have installed the package you need to create the config file for blue
     api.key=<your_xuc_api_key>
     xuc.host=<you_xuc_host>
 
-By default the xuc port is 9000.
+By default the xuc port is 9000 (TCP). On bluemind the port 9091 (TCP) need to be open to get the notification from XiVO.
 
 Now go to the bluemind webi console (superuser) and configure the application server and activate it on your domain supervised on the telecom tab.
 
