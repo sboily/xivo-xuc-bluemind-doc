@@ -43,26 +43,62 @@ If you have coreos follow this procedure.
 Add this file /etc/systemd/system/xuc.service.
 
     [Unit]
+    Description=Xuc
+    After=docker.service
+    Requires=docker.service
+
+    [Service]
+    TimeoutStartSec=0
+    ExecStartPre=-/usr/bin/docker kill xuc
+    ExecStartPre=-/usr/bin/docker rm  xuc
+    ExecStartPre=/usr/bin/docker pull xivo/xuc
+    ExecStart=/usr/bin/docker run -rm --name xuc  -p 8080:9000 -v /conf/xuc:/conf xivo/xuc -Dconfig.file=/conf/xuc.conf  -mem 256
+    ExecStop=/usr/bin/docker stop xuc
+
+    [Install]
+    WantedBy=multi-user.target
+
+    [Unit]
     Description=XuC
     After=docker.service
     Requires=docker.service
     
-    [Service]
-    TimeoutStartSec=0
-    ExecStartPre=-/usr/bin/docker kill xuc
-    ExecStartPre=-/usr/bin/docker rm xuc
-    ExecStartPre=/usr/bin/docker pull jlebleu/xuc
-    ExecStart=/usr/bin/docker run --name xuc -v /conf/xuc:/conf -e CONFIG_FILE=/conf/xuc.conf -e NO_DAEMON=Y -p 9000:9000 jlebleu/xuc
-    ExecStop=/usr/bin/docker stop xuc
-    
-    [Install]
-    WantedBy=multi-user.target
 
 Create the config directory in your coreos
 
     mkdir /conf/xuc
 
+Configuration
+-------------
+
+You can find a sample of the configuration here : https://github.com/sboily/docker-xuc/blob/master/config/xuc.conf
+Detailed xuc configuration can be found here : http://xuc.readthedocs.org/en/latest/
+
 Configure your xuc with the good xivo hostname, good password.
+
+Minimal configuration
+---------------------
+
+Provided you configured your xivo with default user and password
+
+    #
+    # bluemind xivo connector configuration file
+    #
+    include "application.conf"
+
+    xivohost="192.168.51.252"
+
+    XivoWs {
+        enabled=true
+    }
+
+    api {
+        eventUrl = "http://bluemind.avencall.com:9091/xivo/1.0/event/avencall.com/dropbox/"
+    }
+
+    xucami {
+        enabled = false
+    }
 
 Enable the container.
 
@@ -85,17 +121,13 @@ Create the config directory
 
 Pull the image.
 
-    docker pull jlebleu/xuc
+    docker pull xivo/xuc
 
 Launch container.
 
-     docker run --name xuc -d -v /conf/xuc:/conf/ -e CONFIG_FILE=“/conf/xuc.conf” -e NO_DAEMON=“y” -p 9000:9000 jlebleu/xuc
+     docker run -rm --name xuc  -p 8080:9000 -v /conf/xuc:/conf xivo/xuc -Dconfig.file=/conf/xuc.conf  -mem 256
 
 To check the log.
 
     docker logs xuc
 
-Configuration
--------------
-
-You can find a sample of the configuration here : https://github.com/sboily/docker-xuc/blob/master/config/xuc.conf
