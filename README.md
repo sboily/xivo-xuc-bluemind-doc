@@ -125,7 +125,7 @@ Pull the image.
 
 Launch container.
 
-     docker run -rm --name xuc  -p 8080:9000 -v /conf/xuc:/conf xivo/xuc -Dconfig.file=/conf/xuc.conf  -mem 256
+     docker run --rm --name xuc  -p 8080:9000 -v /conf/xuc:/conf xivo/xuc -Dconfig.file=/conf/xuc.conf  -mem 256
 
 To check the log.
 
