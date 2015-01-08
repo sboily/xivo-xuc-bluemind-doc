@@ -20,8 +20,8 @@ After you have installed the package you need to create the config file for blue
 
     cat /etc/bm/xivo.ini
 
-    api.key=<your_xuc_api_key>
-    xuc.host=<you_xuc_host>
+    api.key=<xuc_api_key>
+    xuc.host=<xuc_host>[:<xuc_port>]
 
 By default the xuc port is 9000 (TCP). On bluemind the port 9091 (TCP) need to be open to get the notification from XiVO.
 
