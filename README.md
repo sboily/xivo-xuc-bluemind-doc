@@ -71,8 +71,8 @@ Create the config directory in your coreos
 Configuration
 -------------
 
-You can find a sample of the configuration here : https://github.com/sboily/docker-xuc/blob/master/config/xuc.conf
-Detailed xuc configuration can be found here : http://xuc.readthedocs.org/en/latest/
+You can find a sample of the configuration here : https://gitlab.com/groups/xivoxc
+Detailed xuc configuration can be found here : http://xivocc.readthedocs.org/en/latest/
 
 Configure your xuc with the good xivo hostname, good password.
 
