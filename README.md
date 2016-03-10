@@ -1,3 +1,11 @@
+!!!! WARNING !!!!
+
+Please note this documentation is out of date, and i don't maintain it. If you want more informations about bluemind and xivo, please contact Bluemind or Avencall.
+
+!!!! WARNING !!!!
+
+--------------------------------------------------
+
 XUC/bluemind/XiVO installation
 ==============================
 
